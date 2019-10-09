@@ -152,6 +152,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="E61-70.cpp" />
+    <ClCompile Include="E61-CyclicalFigurate.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="E61-CyclicalFigurate.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
