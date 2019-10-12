@@ -62,7 +62,7 @@ int Polygonal(int order, int n) {
 }
 
 void Cyclic() {
-	std::cout << "Problem 61" << std::endl;
+	std::cout << "Problem 61 : Cyclical figurate numbers" << std::endl;
 
 	const int max = 6;
 

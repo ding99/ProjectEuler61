@@ -21,9 +21,15 @@
     <ClCompile Include="E61-CyclicalFigurate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="62-Cubes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="E61-CyclicalFigurate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="62-Cubes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
