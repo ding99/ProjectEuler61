@@ -16,7 +16,7 @@ void Cubes::Increase(vector<char> target, vector<char> source, bool equal) {
 		vector<char> targetNew(target);
 		targetNew.push_back(source[0]);
 		string str(targetNew.begin(), targetNew.end());
-		unsigned long value = atoi(str.c_str());
+		unsigned long value = atol(str.c_str());
 
 		if (permutes.find(value) == permutes.end() && (!equal || bas[bas.size() - 1] != source[0]))
 			permutes.insert(value);
@@ -71,7 +71,7 @@ set<unsigned long> Cubes::Search(unsigned long n) {
 }
 
 void Cubes::Start() {
-	int range = 2;// 5;
+	int range = 2;//4; //5;
 	cout << "Problem 62 : Cubic permutations, search range " << range << "." << endl;
 
 	chrono::steady_clock sc;
@@ -80,7 +80,7 @@ void Cubes::Start() {
 	set<unsigned long> result;
 	unsigned long cube;
 
-	for (unsigned long n = 1; n < 10000; n++) {
+	for (unsigned long n = 1; n < 50000; n++) {
 		if ((n % 100) == 0) cout << n << " ";
 		if ((result = Search(cube = n * n * n)).size() == range) {
 			result.insert(cube);
@@ -108,5 +108,5 @@ void Cubes::Start() {
 
 	auto time_span = static_cast<chrono::duration<double>>(sc.now() - startt);
 	
-	cout << "finish " << time_span.count() << " secodes" << endl;
+	cout << "finish " << time_span.count() << " secodes" << endl; //1084731223 for 5? //1189740352 for 6?
 }
