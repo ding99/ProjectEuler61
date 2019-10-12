@@ -2,12 +2,13 @@
 #include <string>
 #include <set>
 #include <vector>
+#include <chrono>
 
 #include "62-Cubes.h"
 
 using namespace std;
 
-void Cubes::Increase(vector<char> target, vector<char> source) {
+void Cubes::Increase(vector<char> target, vector<char> source, bool equal) {
 	vector<char>::iterator i;
 	int size = source.size();
 
@@ -16,18 +17,25 @@ void Cubes::Increase(vector<char> target, vector<char> source) {
 		targetNew.push_back(source[0]);
 		string str(targetNew.begin(), targetNew.end());
 		unsigned long value = atoi(str.c_str());
-		if (permutes.find(value) == permutes.end())
+
+		if (permutes.find(value) == permutes.end() && (!equal || bas[bas.size() - 1] != source[0]))
 			permutes.insert(value);
 	}
 	else
 		for (int n1 = 0; n1 < size; n1++) {
+
+			if(target.size() < 1 && source[n1] == '0')
+				continue;
+			if(equal && source[n1] > bas[target.size()])
+				continue;
+
 			vector<char> targetNew(target);
 			targetNew.push_back(source[n1]);
 			vector<char> sourceNew;
 			for(int n2 = 0; n2 < size; n2++)
 				if (n2 != n1)
 					sourceNew.push_back(source[n2]);
-			Increase(targetNew, sourceNew);
+			Increase(targetNew, sourceNew, equal && source[n1] == bas[target.size()]);
 		}
 }
 
@@ -40,7 +48,7 @@ set<unsigned long> Cubes::Search(unsigned long n) {
 
 	string s = to_string(n);
 	if (s.length() > digits) {
-		cout << " <digits " << digits << ", number " << cubes.size() << "> ";
+		cout << "<digits " << digits << "-" << cubes.size() << "> ";
 		cubes.clear();
 		digits = s.length();
 	}
@@ -48,7 +56,12 @@ set<unsigned long> Cubes::Search(unsigned long n) {
 	vector<char> v(s.begin(), s.end());
 	vector<char> vectors;
 
-	Increase(vectors, v);
+	vector<char>::iterator iv;
+	bas.clear();
+	for(iv = v.begin(); iv != v.end(); iv++)
+		bas.push_back(*iv);
+
+	Increase(vectors, v, true);
 
 	for (i = permutes.begin(); i != permutes.end(); i++)
 		if (cubes.find(*i) != cubes.end())
@@ -58,8 +71,11 @@ set<unsigned long> Cubes::Search(unsigned long n) {
 }
 
 void Cubes::Start() {
-	int range = 5;
-	cout << "Problem 62 : Cubic permutations. Search range " << range << "." << endl;
+	int range = 2;// 5;
+	cout << "Problem 62 : Cubic permutations, search range " << range << "." << endl;
+
+	chrono::steady_clock sc;
+	auto startt = sc.now();
 
 	set<unsigned long> result;
 	unsigned long cube;
@@ -89,6 +105,8 @@ void Cubes::Start() {
 			cube = *i;
 	}
 	cout << cube << endl;
+
+	auto time_span = static_cast<chrono::duration<double>>(sc.now() - startt);
 	
-	cout << "finish" << endl;
+	cout << "finish " << time_span.count() << " secodes" << endl;
 }
