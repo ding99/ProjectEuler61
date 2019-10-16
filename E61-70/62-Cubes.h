@@ -5,12 +5,16 @@
 
 class Cubes {
 private:
-	std::set<unsigned long> cubes;
-	std::set<unsigned long> permutes;
-	std::vector<char> bas;
-	int digits;
+	unsigned int digits;
+	std::vector<std::set<unsigned long long>> candidates;
 
-	std::set<unsigned long> Search(unsigned long);
+	std::set<unsigned long long> cubes;
+	std::set<unsigned long long> permutes;
+	std::vector<char> bas;
+
+	bool valid(unsigned long long);
+
+	bool Search(unsigned long long, unsigned int);
 	void Increase(std::vector<char>, std::vector<char>, bool);
 
 public:
