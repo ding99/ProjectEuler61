@@ -151,12 +151,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="62-Cubes.cpp" />
+    <ClCompile Include="E62-Cubes.cpp" />
+    <ClCompile Include="E62-CubePermute.cpp" />
     <ClCompile Include="E61-70.cpp" />
     <ClCompile Include="E61-CyclicalFigurate.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="62-Cubes.h" />
+    <ClInclude Include="E62-Cubes.h" />
+    <ClInclude Include="E62-CubePermute.h" />
     <ClInclude Include="E61-CyclicalFigurate.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
